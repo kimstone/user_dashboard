@@ -1,0 +1,47 @@
+{% extends 'access_control/base.html' %}
+
+{% block meta_description %}{{ page_meta_description }}{% endblock meta_description %}
+{% block title %}{{ page_title }}{% endblock title %}
+
+{% block content %}
+<div class="container">
+
+    <div class="col px-4 mx-5">
+            <h3 class="text-start my-5">Register</h3>
+            {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            <form action="{% url 'access_control/process_new_user' %}" id="registration-form" name="registration-form" method="POST">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="f_name" class="form-label my-2">First Name</label>
+                    <input type="text" class="form-control" id="f_name" name="f_name" placeholder="First Name">
+                </div>
+                <div class="mb-3">
+                    <label for="l_name" class="form-label my-2">Last Name</label>
+                    <input type="text" class="form-control" id="f_name" name="l_name" placeholder="Last Name">
+                </div>
+                <div class="form-group">
+                    <label class="my-2" for="email_add">Email address</label>
+                    <input type="email" class="form-control" id="email_add" name="email_add" placeholder="Enter Your Best Email">
+                </div>
+                <div class="form-group">
+                    <label for="password" class="my-2">Password</label>
+                    <input type="password" class="form-control" id="password"  name="password" placeholder="">
+                </div>
+                <div class="form-group">
+                    <label for="pw_confirm" class="my-2">Confirm Password</label>
+                    <input type="password" class="form-control" id="pw_confirm"  name="pw_confirm" placeholder="">
+                </div>
+                <div class="col text-center">
+                    <button type="submit" class="btn btn-primary btn-sm px-4 my-3">Register</button>
+                </div>
+            </form>
+        </div>
+
+</div>
+{% endblock content %}
