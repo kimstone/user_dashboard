@@ -5,10 +5,9 @@ from . models import *
 
 # Create your views here.
 
-def index_view(request):
+def dashboard(request):
     context = {
-        'page_title': "Page Title",
-        'page_meta_description': "Page Meta Description",
+        'page_title': "Test App Dashboard",
+        'page_meta_description': "SEO for Test App Dashboard",
     }
-    context['welcome_msg'] = "Welcome to the Sample Page."
-    return render(request, 'access_control/index.html', context)
+    return render(request, 'access_control/dashboard.html', context)

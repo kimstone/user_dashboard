@@ -1,0 +1,35 @@
+{% extends 'access_control/base.html' %}
+
+{% block meta_description %}{{ page_meta_description }}{% endblock meta_description %}
+{% block title %}{{ page_title }}{% endblock title %}
+
+{% block content %}
+<div class="container">
+
+    <div class="row w-100 mx-auto m-5 p-3">
+        <div class="bg-light p-5 border border-5">
+            <h1 class="display-4">Welcome to the Test</h1>
+            <p class="lead">We're going to build a cool application using a MVC framework! This application was built with the Village88 folks.</p>
+            <hr class="my-4">
+            <!--<p>It uses utility classes for typography and spacing to space content out within the larger container.</p>-->
+            <a class="btn btn-primary btn-lg" href="#" role="button">Start</a>
+        </div>
+    </div>
+
+    <div class="row w-100 mx-auto m-5 px-4 py-2">
+        <div class="col">
+            <h5>Manage Users</h5>
+            <p>Using this application, you'll learn how to add, remove, and edit users for this application.</p>
+        </div>
+        <div class="col">
+            <h5>Leave Messages</h5>
+            <p>Users will be able to leave a message to another user using this application.</p>
+        </div>
+        <div class="col">
+            <h5>Edit User Information</h5>
+            <p>Admins will be able to edit another user's information (email address, first name, last name, etc).</p>
+        </div>
+    </div>
+
+</div>
+{% endblock content %}
