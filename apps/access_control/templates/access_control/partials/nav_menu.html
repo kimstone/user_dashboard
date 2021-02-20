@@ -12,16 +12,16 @@
                 <a class="nav-link" href="/">Home<span class="sr-only"></span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Dashboard</a>
+                <a class="nav-link" href="{% url 'access_control/dashboard_admin' %}">Dashboard</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">Profile</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Signin</a>
+                <a class="nav-link" href="{% url 'access_control/login_form' %}">Signin</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Logout</a>
+                <a class="nav-link" href="{% url 'access_control/logout' %}">Logout</a>
             </li>
             <!--<li class="nav-item">
                     <a class="nav-link disabled" href="#">Reset Application</a>

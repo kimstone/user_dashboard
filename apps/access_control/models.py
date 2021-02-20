@@ -5,6 +5,14 @@ import bcrypt
 
 class UserManager(models.Manager):
 
+    def authenticate_credentials(self, email, password):
+        try:
+            user = User.objects.get(email=email)
+        except:
+            return False
+        return bcrypt.checkpw(password.encode(), user.password.encode())
+
+
     def validate_registration_form(self, data):
         EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
 
@@ -43,14 +51,25 @@ class UserManager(models.Manager):
         return errors
 
 
+
     def register_new_user(self, data):
         hashed_pw = bcrypt.hashpw(data['password'].encode(), bcrypt.gensalt()).decode()
-        return self.create(
-            first_name=data['f_name'],
-            last_name=data['l_name'],
-            email=data['email_add'],
-            password=hashed_pw,
-        )
+        if User.objects.all().count() > 0:
+            return self.create(
+                first_name=data['f_name'],
+                last_name=data['l_name'],
+                email=data['email_add'],
+                password=hashed_pw,
+            )
+        else:
+            return self.create(
+                first_name=data['f_name'],
+                last_name=data['l_name'],
+                email=data['email_add'],
+                password=hashed_pw,
+                user_level=9,
+            )
+
 
 
 # Create your models here.
@@ -61,6 +80,7 @@ class User(models.Model):
     email = models.CharField(max_length=150, unique=True)
     password = models.CharField(max_length=255, null=False)
     description = models.CharField(max_length=255, null=False)
+    user_level = models.IntegerField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

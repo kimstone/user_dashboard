@@ -7,15 +7,31 @@
 <div class="container">
 
     <div class="row w-100 mx-auto m-5">
-        <div class="col"><h2 class="text-center">{{ page_title }}</h2></div>
-    </div>
-
-    <div class="row w-100 mx-auto m-5">
-        <div class="col">
-            Column #1
-        </div>
-        <div class="col">
-            Column #2
+        <div class="col px-4 mx-5">
+            <h3 class="text-center">Login</h3>
+            {% if messages %}
+            <ul class="messages">
+                {# login form #}
+                {% for message in messages %}
+                    <li {% if "login" in message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            <form action="{% url 'access_control/authenticate' %}" id="login-form" name="login-form" method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label class="my-2" for="email_add">Email Address</label>
+                    <input type="email" class="form-control" id="email_add" name="email_add" placeholder="Enter Your Best Email">
+                </div>
+                <div class="form-group">
+                    <label for="password" class="my-2">Password</label>
+                    <input type="password" class="form-control" id="password"  name="password" placeholder="">
+                </div>
+                <div class="col text-center">
+                    <button type="submit" class="btn btn-primary btn-sm px-4 my-3">Login</button>
+                </div>
+            </form>
+            <p class="text-start"><a href="{% url 'access_control/register' %}">Don't have an account? Register!</a></p>
         </div>
     </div>
 

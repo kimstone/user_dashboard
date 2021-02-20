@@ -1,0 +1,25 @@
+{% extends 'access_control/base.html' %}
+
+{% block meta_description %}{{ page_meta_description }}{% endblock meta_description %}
+{% block title %}{{ page_title }}{% endblock title %}
+
+{% block content %}
+<div class="container">
+
+    <div class="row w-100 mx-auto m-5">
+        <div class="col"><h2 class="text-center">Confirm Delete</h2></div>
+    </div>
+
+    <div class="row w-100 mx-auto m-5">
+        <div class="col">
+            <form method="POST" action=".">
+                {%  csrf_token %}
+                <p>Are you sure? Do you want to delete: "{{ object }}"?</p>
+                <input type="submit" value="Confirm" class="btn btn-warning btn-lg">
+                <a href="{% url 'access_control/dashboard_admin' %}" class="btn btn-default">Cancel</a>
+            </form>
+        </div>
+    </div>
+
+</div>
+{% endblock content %}
